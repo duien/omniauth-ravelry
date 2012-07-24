@@ -1,44 +1,31 @@
-require 'omniauth-oauth2'
+require 'omniauth-oauth'
 
 module OmniAuth
   module Strategies
-    class Ravelry < OmniAuth::Strategies::OAuth2
+    class Ravelry < OmniAuth::Strategies::OAuth
       option :name, 'ravelry'
       option :client_options, {
-        :site => 'https://www.ravelry.com',
-        :token_url => '/oauth/request_token'
+        :site => 'https://www.ravelry.com'
       }
 
-      uid{ raw_info['uid'] }
+      uid{ request.params['username'] }
 
       info do
         {
-          'email' => raw_info['email'],
-          'name' => raw_info['name'],
-          'location' => "#{raw_info['city']}, #{raw_info['state']}"
+          :name => raw_info['name'],
+          :location => raw_info['city']
         }
       end
 
       extra do
         {
-          'raw_info' => raw_info,
-          #'authorizations' => authorizations
+          'raw_info' => raw_info
         }
       end
 
       def raw_info
-        access_token.options[:mode] = :query
-        access_token.options[:param_name] = :oauth_token
-      
-        @raw_info ||= {} # access_token.get('/api/profile.json').parsed['data']
+        {}
       end
-      
-      # def authorizations
-      #   access_token.options[:mode] = :query
-      #   access_token.options[:param_name] = :oauth_token
-      # 
-      #   @authorizations ||= access_token.get('/api/authorizations.json').parsed['data']
-      # end
 
     end
   end
