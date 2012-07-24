@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Emily Price"]
   gem.email         = ["price.emily@gmail.com"]
   gem.description   = %q{OmniAuth strategy for Ravelry}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.summary       = %q{OmniAuth strategy for Ravelry}
   gem.homepage      = "http://github.com/duien/omniauth-ravelry"
 
   gem.files         = `git ls-files`.split($\)
