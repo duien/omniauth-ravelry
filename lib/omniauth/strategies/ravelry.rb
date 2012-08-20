@@ -5,7 +5,7 @@ module OmniAuth
     class Ravelry < OmniAuth::Strategies::OAuth
       option :name, 'ravelry'
       option :client_options, {
-        :site => 'https://www.ravelry.com'
+        :site => 'https://api.ravelry.com'
       }
 
       uid{ request.params['username'] }
@@ -24,7 +24,7 @@ module OmniAuth
       end
 
       def raw_info
-        {}
+        @raw_info ||= MultiJson.decode(access_token.get("/people/#{uid}.json").body)
       end
 
     end
