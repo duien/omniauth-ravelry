@@ -14,8 +14,12 @@ module OmniAuth
 
       info do
         {
-          :name => raw_info['name'],
-          :location => raw_info['city']
+          'name'        => raw_info['first_name'],
+          'location'    => raw_info['location'],
+          'nickname'    => raw_info['username'],
+          'first_name'  => raw_info['first_name'],
+          'description' => raw_info['about_me'],
+          'image'       => raw_info['small_photo_url']
         }
       end
 
@@ -26,7 +30,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= MultiJson.decode(access_token.get("/people/#{uid}.json").body)
+        @raw_info ||= MultiJson.decode(access_token.get("https://api.ravelry.com/people/#{uid}.json").body)['user']
       end
 
     end
