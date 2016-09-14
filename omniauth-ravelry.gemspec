@@ -15,8 +15,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Omniauth::Ravelry::VERSION
 
-  gem.add_dependency "omniauth", "~> 1.1.0"
-  gem.add_dependency "omniauth-oauth", "~> 1.0.1"
+  gem.add_dependency "omniauth", "~> 1.3.0"
+  gem.add_dependency "omniauth-oauth", "~> 1.1.0"
   gem.add_dependency "multi_json"
 
   gem.add_development_dependency "rake"
